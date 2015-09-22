@@ -1,0 +1,32 @@
+inherit font
+
+NAME="lohit-gurmukhi-fonts"
+VERSION=2.91.0
+RELEASE=1
+CATEGORY="X11"
+SUMMARY="Lohit Gurmukhi (Punjabi) font"
+DESCRIPTION="Lohit ('Red' in Sanskrit) is a font family which supports various
+Indic scripts."
+HOMEPAGE="https://fedorahosted.org/lohit/"
+SRC_URI="https://fedorahosted.org/releases/l/o/lohit/lohit-gurmukhi-${VERSION}.tar.gz"
+SRC_URI+=" http://pkgs.fedoraproject.org/cgit/${NAME}.git/plain/${NAME}.conf"
+SRC_DIR="lohit-gurmukhi-${VERSION}"
+
+OBSOLETES="font-lohit-punjabi-ttf"
+
+src_compile() {
+	lndirs
+	cd ${B}
+	cygmake ttf
+}
+
+src_install() {
+	cd ${B}
+	fontinto ${NAME%-fonts}
+	dofont *.ttf
+
+	dofontconf 6*.conf
+	newfontconf ${NAME}.conf 30-${NAME%-fonts}.conf
+
+	dodoc OFL.txt
+}
