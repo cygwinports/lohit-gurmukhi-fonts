@@ -12,6 +12,8 @@ SRC_URI="https://fedorahosted.org/releases/l/o/lohit/lohit-gurmukhi-${VERSION}.t
 SRC_URI+=" http://pkgs.fedoraproject.org/cgit/${NAME}.git/plain/${NAME}.conf"
 SRC_DIR="lohit-gurmukhi-${VERSION}"
 
+ARCH=noarch
+
 OBSOLETES="font-lohit-punjabi-ttf"
 
 src_compile() {
